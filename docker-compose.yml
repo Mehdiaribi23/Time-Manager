@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=nathan
+      - POSTGRES_DB=gotham_dev2
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Ajoutez cette ligne pour créer un volume
+
+  elixir_server:
+    build:
+      context: ./gotham
+    # image: ianq/back:latest
+    ports:
+      - 4000:4000
+    depends_on:
+      - postgres
+    restart: always
+
+  web_client:
+    build: ./client
+    # image: ianq/front:latest
+    ports:
+      - 80:80
+    restart: always
+
+
+volumes:
+  postgres_data:  # Définition du volume PostgreSQL_data
