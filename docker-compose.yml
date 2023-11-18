@@ -8,7 +8,7 @@ services:
       - 5432:5432
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=nathan
+      - POSTGRES_PASSWORD=mehdi
       - POSTGRES_DB=gotham_dev2
     volumes:
       - postgres_data:/var/lib/postgresql/data  # Ajoutez cette ligne pour créer un volume
